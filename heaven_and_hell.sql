@@ -34,7 +34,7 @@ telephone INTEGER,
 address VARCHAR
 );
 
-CREATE TABLE IF NOT EXISTS stuent_grades (
+CREATE TABLE IF NOT EXISTS student_grades (
 student_id INTEGER,
 course_id INTEGER,
 ects INTEGER,
