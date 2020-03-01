@@ -1,23 +1,6 @@
 from sqlalchemy import create_engine
 
 
-def create_db(engine, queries):
-    for query in queries:
-        execute_query(engine, query)
-
-
-def execute_query(engine, query):
-    return engine.execute(query)
-
-
-def select_all(table, engine):
-    return engine.execute(f'select * from {table}'). fetchall()
-
-
-if __name__ == '__main__':
-    url = 'sqlite:///:memory:'
-    engine = create_engine(url)
-
 queries = [
     'CREATE TABLE IF NOT EXISTS courses (course_id INTEGER PRIMARY KEY AUTOINCREMENT, \n'
     'title VARCHAR, ects INTEGER, \n'
@@ -59,12 +42,30 @@ queries = [
     'telephone INTEGER);'
 ]
 
-table = ['INSERT INTO courses (title) VALUES ("Basic Excel")',
-         'INSERT INTO courses (price) VALUES (350)',
-         'INSERT INTO courses (start_date) VALUES (23-01-2020)',
-         'INSERT INTO courses (end_date) VALUES (25-01-2020)',
-         'INSERT INTO courses (type) VALUES ("onsite")',
-         ]
+table = [
+    'INSERT INTO courses (title) VALUES ("Basic Excel")',
+    'INSERT INTO courses (price) VALUES (350)',
+    'INSERT INTO courses (start_date) VALUES (23-01-2020)',
+    'INSERT INTO courses (end_date) VALUES (25-01-2020)',
+    'INSERT INTO courses (type) VALUES ("onsite")',
+]
 
-create_db(engine, queries)
-create_db(engine, table)
+
+def create_db(engine, queries):
+    for query in queries:
+        execute_query(engine, query)
+
+
+def execute_query(engine, query):
+    return engine.execute(query)
+
+
+def select_all(table, engine):
+    return engine.execute(f'select * from {table}').fetchall()
+
+
+if __name__ == '__main__':
+    url = 'sqlite:///:memory:'
+    engine = create_engine(url)
+    create_db(engine, queries)
+    create_db(engine, table)

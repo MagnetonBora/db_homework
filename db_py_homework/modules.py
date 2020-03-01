@@ -1,12 +1,13 @@
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Sequence, String, Column, Integer, Date
 
+
 Base = declarative_base()
 
 
 class Course(Base):
+    __tablename__ = 'courses'
 
-    __tablename__ = 'course'
     course_id = Column(Integer, Sequence('course_id_seq'), primary_key=True)
     title = Column(String(50))
     ects = Column(Integer)
@@ -19,8 +20,8 @@ class Course(Base):
 
 
 class OnlineCourse(Base):
+    __tablename__ = 'online_courses'
 
-    __tablename__ = 'online_course'
     course_id = Column(Integer, Sequence('course_id_seq'), primary_key=True)
     url = Column(String(150))
 
@@ -29,8 +30,8 @@ class OnlineCourse(Base):
 
 
 class OnsiteCourse(Base):
+    __tablename__ = 'onsite_courses'
 
-    __tablename__ = 'onsite_course'
     course_id = Column(Integer, Sequence('course_id_seq'), primary_key=True)
     address = Column(String(150))
     duration = Column(Integer)
@@ -40,8 +41,8 @@ class OnsiteCourse(Base):
 
 
 class Departament(Base):
+    __tablename__ = 'departements'
 
-    __tablename__ = 'departement'
     departement_id = Column(Integer, Sequence('course_id_seq'), primary_key=True)
     departement_name = Column(String(150))
     address = Column(String(150))
@@ -53,8 +54,8 @@ class Departament(Base):
 
 
 class Employees(Base):
-
     __tablename__ = 'employees'
+
     employee_id = Column(Integer, Sequence('employee_id_seq'), primary_key=True)
     first_name = Column(String(150))
     last_name = Column(String(150))
@@ -71,8 +72,8 @@ class Employees(Base):
 
 
 class StudentGrades(Base):
+    __tablename__ = 'students_grades'
 
-    __tablename__ = 'student_grades'
     student_id = Column(Integer, Sequence('student_id_seq'), primary_key=True)
     course_id = Column(Integer)
     ects = Column(Integer)
@@ -83,8 +84,8 @@ class StudentGrades(Base):
 
 
 class Students(Base):
-
     __tablename__ = 'students'
+
     student_id = Column(Integer, Sequence('student_id_seq'), primary_key=True)
     first_name = Column(String(100))
     last_name = Column(String(100))
@@ -94,7 +95,3 @@ class Students(Base):
 
     def __repr__(self):
         return f"Students({self.first_name}, {self.last_name}, {self.address}, {self.pesel}, {self.telephone})"
-
-
-if __name__ == '__main__':
-    pass
